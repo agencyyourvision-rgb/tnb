@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /contact.php
+Disallow: /privacy-policy/
+Disallow: /pt/privacy-policy/
+Disallow: /es/privacy-policy/
+
+Sitemap: https://www.tnb-west.com/sitemap.xml
