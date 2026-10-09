@@ -913,3 +913,4 @@ p,.lead{text-wrap:pretty}
 @media (max-width:640px){.logo img{height:30px}}
 .foot-logo{display:inline-block;margin-bottom:22px}
 .foot-logo img{height:44px;width:auto;display:block}
+.h1-tag{display:block;margin-top:.35em;font-size:.42em;letter-spacing:-.02em;line-height:1.2;font-weight:600;color:var(--ink-2)}

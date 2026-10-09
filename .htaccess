@@ -1,0 +1,77 @@
+# TNBuilt West — Apache config (Hostinger)
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+AddType video/mp4 .mp4
+AddType image/webp .webp
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# Force HTTPS + www
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.tnb-west.com/$1 [R=301,L]
+# Old WordPress URLs -> new structure
+RewriteRule ^scale-models-naval/?$ /scale-models/marine/ [R=301,L]
+RewriteRule ^yachts/?$ /scale-models/marine/superyachts/ [R=301,L]
+RewriteRule ^cruise-ships-passenger-liners/?$ /scale-models/marine/cruise-ships-passenger-liners/ [R=301,L]
+RewriteRule ^oil-tanker-fpso-oil-platform/?$ /scale-models/offshore-oil-gas/ [R=301,L]
+RewriteRule ^defense-boats/?$ /scale-models/marine/naval-defense-boats/ [R=301,L]
+RewriteRule ^support-boats-vassels/?$ /scale-models/marine/support-vessels/ [R=301,L]
+RewriteRule ^architectural-models/?$ /scale-models/architectural/ [R=301,L]
+RewriteRule ^villas/?$ /scale-models/architectural/villas/ [R=301,L]
+RewriteRule ^residential-towers/?$ /scale-models/architectural/residential-towers/ [R=301,L]
+RewriteRule ^public-spaces/?$ /scale-models/architectural/public-spaces/ [R=301,L]
+RewriteRule ^offices/?$ /scale-models/architectural/offices/ [R=301,L]
+RewriteRule ^hotel-resorts/?$ /scale-models/architectural/hotels-resorts/ [R=301,L]
+RewriteRule ^master-planning/?$ /scale-models/master-planning/ [R=301,L]
+RewriteRule ^city-district-planning/?$ /scale-models/master-planning/city-district-masterplan/ [R=301,L]
+RewriteRule ^harbour-development/?$ /scale-models/master-planning/tusdeer-port-jeddah/ [R=301,L]
+RewriteRule ^island-with-airport/?$ /scale-models/master-planning/island-city-masterplan-airport/ [R=301,L]
+RewriteRule ^general-plan/?$ /scale-models/master-planning/ [R=301,L]
+RewriteRule ^3d-map/?$ /scale-models/master-planning/3d-city-map-model/ [R=301,L]
+RewriteRule ^industry/?$ /scale-models/industrial/ [R=301,L]
+RewriteRule ^oil-refinery/?$ /scale-models/industrial/oil-refinery/ [R=301,L]
+RewriteRule ^gpl-plant/?$ /scale-models/industrial/lng-gas-plant/ [R=301,L]
+RewriteRule ^watertreatment-plant/?$ /scale-models/industrial/actiflo-water-treatment-plant/ [R=301,L]
+RewriteRule ^sewagetreatment-plant/?$ /scale-models/industrial/hanoi-sewage-treatment-plant/ [R=301,L]
+RewriteRule ^parts-mechanisms/?$ /scale-models/parts-mechanisms/ [R=301,L]
+RewriteRule ^gas-turbine-generator/?$ /scale-models/parts-mechanisms/gas-turbine-generator/ [R=301,L]
+RewriteRule ^onshore-sismic-detection/?$ /scale-models/parts-mechanisms/vibroseis-trucks-onshore-prospection/ [R=301,L]
+RewriteRule ^rov-for-submarine-operations/?$ /scale-models/parts-mechanisms/offshore-rov-subsea-robot/ [R=301,L]
+RewriteRule ^my-model/?$ /contact/ [R=301,L]
+RewriteRule ^expo2020-pavilion/?$ /services/ [R=301,L]
+RewriteRule ^visitors-experience/?$ /services/ [R=301,L]
+RewriteRule ^event-operations/?$ /services/ [R=301,L]
+RewriteRule ^shutdown-decommissioning/?$ /services/ [R=301,L]
+RewriteRule ^museums/?$ /services/ [R=301,L]
+RewriteRule ^visitors-experience-2/?$ /services/ [R=301,L]
+RewriteRule ^complementary-services/?$ /services/ [R=301,L]
+RewriteRule ^scale-model-maintenance/?$ /services/ [R=301,L]
+RewriteRule ^trade-shows-and-expositions/?$ /services/ [R=301,L]
+RewriteRule ^digital-reality-interaction/?$ /services/ [R=301,L]
+RewriteRule ^news/?$ / [R=301,L]
+RewriteRule ^about-us/?$ /about/ [R=301,L]
+RewriteRule ^about-us-2/?$ /about/ [R=301,L]
+RewriteRule ^worlds-best/?$ /about/ [R=301,L]
+RewriteRule ^glossary-3/?$ /about/ [R=301,L]
+RewriteRule ^one-sheet-brochure/?$ /contact/ [R=301,L]
+RewriteRule ^hard-cover-portfolio-booklet/?$ /contact/ [R=301,L]
+RewriteRule ^blog/?$ / [R=301,L]
+RewriteRule ^contacts/?$ /contact/ [R=301,L]
+RewriteRule ^wp-content/.*$ / [R=301,L]
+</IfModule>
+
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType image/webp "access plus 1 year"
+ExpiresByType image/jpeg "access plus 1 year"
+ExpiresByType image/png "access plus 1 year"
+ExpiresByType video/mp4 "access plus 1 year"
+ExpiresByType text/css "access plus 1 month"
+ExpiresByType application/javascript "access plus 1 month"
+ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+<IfModule mod_deflate.c>
+AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml application/xml
+</IfModule>
