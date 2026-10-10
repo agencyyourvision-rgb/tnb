@@ -1035,3 +1035,7 @@ body{overflow-x:clip}
 .gnav-in .logo{flex:none}
 @media (max-width:1380px){.gnav-links{gap:22px}}
 @media (max-width:1240px) and (min-width:1069px){.gnav-r .pill-sm{display:none}.gnav-links{gap:18px}}
+.bens{grid-template-columns:repeat(4,1fr)}
+.bens .ben h3{font-size:clamp(28px,2.7vw,44px)}
+@media (max-width:1068px){.bens{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.bens{grid-template-columns:1fr}}
