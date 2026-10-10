@@ -4,7 +4,7 @@
 $TO   = 'info@tnb-west.com';
 $FROM = 'website@tnb-west.com';   // create this mailbox in Hostinger (or change to an existing address on the domain)
 $MAX  = 25 * 1024 * 1024;
-$ALLOWED = ['pdf','dwg','dxf','step','stp','skp','rvt','zip','jpg','jpeg','png','webp'];
+$ALLOWED = ['pdf','dwg','dxf','step','stp','skp','rvt','3dm','ifc','obj','fbx','zip','jpg','jpeg','png','webp'];
 
 header('Content-Type: application/json; charset=utf-8');
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); echo json_encode(['ok'=>false]); exit; }
@@ -17,7 +17,11 @@ if (!$name || !$email) { http_response_code(422); echo json_encode(['ok'=>false]
 
 $fields = [
   'Name' => $name, 'Company' => f('company'), 'Email' => $email, 'Country' => f('country'),
-  'Phone / WhatsApp' => f('phone'), 'Building' => f('type'), 'Files link' => f('link'), 'Language' => f('lang'),
+  'Phone / WhatsApp' => f('phone'), 'Building' => f('type'), 'Preferred scale' => f('scale'),
+  'Model dimensions' => f('dims'), 'Number of models' => f('qty'), 'Delivery / event date' => f('date'),
+  'Destination' => f('destination'), 'Lighting' => f('lighting'),
+  'Special requirements' => implode(', ', array_map('strip_tags', (array)($_POST['special'] ?? []))),
+  'Files link' => f('link'), 'Language' => f('lang'),
 ];
 $body = "New project request from tnb-west.com\n\n";
 foreach ($fields as $k => $v) { if ($v !== '') $body .= str_pad($k.':', 18) . $v . "\n"; }

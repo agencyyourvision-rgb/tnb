@@ -448,6 +448,8 @@ if (location.protocol !== 'file:' && window.fetch && window.DOMParser){
     if (a.getAttribute('aria-current') === 'true') { e.preventDefault(); return; }
     e.preventDefault();
     var href = a.href, lang = d.querySelector('.lang.open'); if (lang) lang.classList.remove('open');
+    /* Arabic flips the whole layout (RTL): do a normal page load so every scroll animation is rebuilt */
+    if (a.getAttribute('hreflang') === 'ar' || d.documentElement.lang === 'ar'){ location.href = href; return; }
     if (d.body.classList.contains('menu-open')) { var bg = d.querySelector('.burger'); if (bg) bg.click(); }
     swap(href).catch(function(){ location.href = href; });
   });
