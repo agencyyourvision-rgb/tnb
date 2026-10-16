@@ -366,10 +366,10 @@ window.__v3 = function(gsap, ST){
   var tlE = d.querySelector('.tl');
   if (tlE){
     var sts = tlE.querySelectorAll('.ts');
-    gsap.to('.tl-fill', { width:'100%', ease:'none', scrollTrigger:{ trigger:tlE, start:'top 80%', end:'bottom 45%', scrub:true, onUpdate:function(s){
+    gsap.to('.tl-fill', { width:'100%', ease:'none', scrollTrigger:{ trigger:tlE, start:'top 85%', end:'top 30%', scrub:true, onUpdate:function(s){
       sts.forEach(function(el, k){ el.classList.toggle('on', s.progress >= k / (sts.length - 1) - .02); });
     }}});
-    ST.create({ trigger:tlE, start:'top 80%', onEnter:function(){ sts[0].classList.add('on'); } });
+    ST.create({ trigger:tlE, start:'top 85%', onEnter:function(){ sts[0].classList.add('on'); } });
   }
 
   /* 7 · Chat messages arrive */
@@ -395,7 +395,7 @@ if (window.__motionReady && !window.__v3done) window.__v3(window.__motionReady.g
 var d = document;
 /* Flyout: stays open while the pointer is over the link OR the panel; closes with a short grace delay */
 d.querySelectorAll('.has-fly').forEach(function(li){
-  var t, open = function(){ clearTimeout(t); li.classList.add('open'); }, close = function(){ clearTimeout(t); t = setTimeout(function(){ li.classList.remove('open'); }, 260); };
+  var t, open = function(){ clearTimeout(t); d.querySelectorAll('.has-fly.open').forEach(function(o){ if (o !== li) o.classList.remove('open'); }); li.classList.add('open'); }, close = function(){ clearTimeout(t); t = setTimeout(function(){ li.classList.remove('open'); }, 260); };
   li.addEventListener('pointerenter', open); li.addEventListener('pointerleave', close);
   var fly = li.querySelector('.fly'); if (fly){ fly.addEventListener('pointerenter', open); fly.addEventListener('pointerleave', close); }
   li.addEventListener('focusin', open); li.addEventListener('focusout', function(e){ if (!li.contains(e.relatedTarget)) close(); });
