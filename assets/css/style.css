@@ -1120,3 +1120,55 @@ body{overflow-x:clip}
 .ihero .ab-b{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 30px;width:auto;max-width:900px;margin:28px auto 0}
 .ihero .ab-b li{flex:0 1 auto;text-align:start}
 @media (max-width:640px){.ihero .ab-b{flex-direction:column;align-items:flex-start;width:fit-content;max-width:100%}}
+
+/* ═══ v14 · review 3 ═══ */
+/* lists inside text blocks use the same type as paragraphs */
+.prose ul,.prose ol{margin:0 0 16px;padding-inline-start:22px}
+.prose li{font-size:clamp(17px,1.4vw,19px);line-height:1.65;color:var(--ink-2);margin:0 0 6px}
+.prose li::marker{color:var(--red-2)}
+/* buttons under animated card grids never sit under the cards */
+.sec-s .center{position:relative;z-index:2}
+/* back to top */
+.totop{position:fixed;right:max(24px,env(safe-area-inset-right));bottom:94px;z-index:95;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.18);background:rgba(20,20,22,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:rgba(255,255,255,.78);display:grid;place-items:center;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .3s,transform .3s var(--ease-out),visibility .3s,background .2s,color .2s}
+.totop svg{width:18px;height:18px}
+.totop.on{opacity:1;visibility:visible;transform:none}
+.totop:hover{background:rgba(255,255,255,.12);color:#fff}
+[dir=rtl] .totop{right:auto;left:max(24px,env(safe-area-inset-left))}
+@media (max-width:640px){.totop{width:36px;height:36px;bottom:84px;right:20px}}
+/* FAQ answers with lists */
+.faq .ans ul,.faq .ans ol{margin:4px 0 14px;padding-inline-start:22px;color:var(--ink-2)}
+.faq .ans li{margin:0 0 5px;line-height:1.55}
+.faq .ans li::marker{color:var(--red-2)}
+.faq .ans p.faq-h{color:var(--ink);font-weight:600;margin:14px 0 6px}
+/* contact: offices */
+.offs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.off{background:var(--tile);border-radius:var(--r);padding:26px 28px}
+.off h3{color:var(--red-2);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:0 0 14px}
+.off p{margin:0;color:var(--ink-2);font-size:15.5px;line-height:1.65}
+.off p b{color:var(--ink);font-weight:600}
+.off-sales{margin-top:14px;background:var(--tile);border-radius:var(--r);padding:26px 28px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 34px}
+.off-sales h3{color:var(--red-2);font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin:0;flex-basis:100%}
+.off-sales p{margin:0;font-size:17px;color:var(--ink-2)}
+.off-sales a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+/* about: CEO quote */
+.ceo{display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:clamp(28px,5vw,72px);align-items:center;max-width:1040px}
+.ceo-ph{margin:0;border-radius:var(--r);overflow:hidden;background:#000}
+.ceo-ph img{width:100%;height:auto;display:block}
+.ceo-q{margin:0}
+.ceo-q p{font-size:clamp(24px,2.6vw,36px);font-weight:600;letter-spacing:-.03em;line-height:1.25;color:var(--ink);margin:0 0 26px}
+.ceo-q footer b{display:block;font-size:17px;color:var(--ink)}
+.ceo-q footer span{display:block;font-size:14px;color:var(--red-2);margin-top:4px;font-weight:600;letter-spacing:.02em}
+@media (max-width:760px){.ceo{grid-template-columns:1fr;justify-items:center;text-align:center}.ceo-ph{max-width:280px}}
+/* client feedback page */
+.fbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.fb{margin:0;background:var(--tile);border-radius:var(--r);padding:clamp(26px,3vw,38px);display:flex;flex-direction:column;justify-content:space-between;gap:26px}
+.fb q{font-size:clamp(21px,1.9vw,26px);font-weight:600;letter-spacing:-.025em;line-height:1.25;quotes:"“" "”"}
+.fb figcaption{display:flex;align-items:center;gap:14px;font-size:14px;color:var(--ink-2)}
+.fb figcaption b{display:block;color:var(--ink);font-size:15px}
+.fb-big{grid-column:1/-1;text-align:center;align-items:center}
+.fb-big q{font-size:clamp(26px,3vw,40px);max-width:30ch}
+#video video{aspect-ratio:16/9;object-fit:cover}
+.offs{display:flex;flex-wrap:wrap;justify-content:center}
+.off{flex:0 1 calc((100% - 28px)/3);min-width:0}
+@media (max-width:900px){.off{flex-basis:calc((100% - 14px)/2)}}
+@media (max-width:560px){.off{flex-basis:100%}}

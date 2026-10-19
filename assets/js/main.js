@@ -192,7 +192,7 @@ function motion(){
     gsap.to(el, { opacity:1, y:0, duration:1.2, ease:'power3.out', scrollTrigger:{ trigger:el, start:'top 88%' } });
   });
   gsap.utils.toArray('[data-stagger]').forEach(function(g){
-    gsap.from(g.children, { y:60, opacity:0, duration:1.1, ease:'power3.out', stagger:.08, scrollTrigger:{ trigger:g, start:'top 85%' } });
+    gsap.fromTo(g.children, { y:60, opacity:0 }, { y:0, opacity:1, duration:1.1, ease:'power3.out', stagger:.08, scrollTrigger:{ trigger:g, start:'top 85%' } });
   });
 
   /* Count-ups in bento */
@@ -244,6 +244,9 @@ function motion(){
   window.__motionReady = { gsap:gsap, ST:ScrollTrigger };
   if (window.__v3 && !window.__v3done){ window.__v3done = true; window.__v3(gsap, ScrollTrigger); }
   window.addEventListener('load', function(){ ScrollTrigger.refresh(); });
+  if (document.readyState === 'complete') setTimeout(function(){ ScrollTrigger.refresh(); }, 50);
+  /* keep trigger positions right when content above changes height (videos, fonts, late images) */
+  if (window.ResizeObserver){ var rh = 0, rt; new ResizeObserver(function(){ var h = document.body.scrollHeight; if (Math.abs(h - rh) > 40){ rh = h; clearTimeout(rt); rt = setTimeout(function(){ ScrollTrigger.refresh(); }, 250); } }).observe(document.body); }
 }
 })();
 
@@ -455,4 +458,11 @@ if (location.protocol !== 'file:' && window.fetch && window.DOMParser){
   });
   window.addEventListener('popstate', function(){ location.reload(); });
 }
+})();
+
+/* back to top */
+(function(){ var b = document.querySelector('.totop'); if (!b) return;
+  var on = false, f = function(){ var v = scrollY > innerHeight * 1.2; if (v !== on){ on = v; b.classList.toggle('on', v); } };
+  addEventListener('scroll', f, { passive:true }); f();
+  b.addEventListener('click', function(){ scrollTo({ top:0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
 })();
